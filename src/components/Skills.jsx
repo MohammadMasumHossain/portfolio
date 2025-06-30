@@ -20,7 +20,7 @@ const skills = [
 
 const Skills = () => {
   return (
-    <div className="bg-base-100 py-16 px-6">
+    <div id='skill' className="bg-base-100 py-16 px-6">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-10">My Skills</h2>
         <motion.div

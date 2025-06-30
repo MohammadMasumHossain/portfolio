@@ -1,14 +1,15 @@
 import React from 'react';
 import logo from '../assets/singlogo.png';
+import AnchorLink from 'react-anchor-link-smooth-scroll'; // ✅ Import correctly
 
 const Navbar = () => {
   const links = (
     <>
-      <li><a href="#home" className="text-lg font-semibold">Home</a></li>
-      <li><a href="#AboutMe" className="text-lg font-semibold">About Me</a></li>
-      <li><a href="#skills" className="text-lg font-semibold">Skills</a></li>
-      <li><a href="#projects" className="text-lg font-semibold">Projects</a></li>
-      <li><a href="#contact" className="text-lg font-semibold">Contact</a></li>
+      <li><AnchorLink className="anchor-link text-lg font-semibold" offset="50" href="#home">Home</AnchorLink></li>
+      <li><AnchorLink className="anchor-link text-lg font-semibold" offset="50" href="#aboutme">About Me</AnchorLink></li>
+      <li><AnchorLink className="anchor-link text-lg font-semibold" offset="50" href="#skill">Skills</AnchorLink></li>
+      <li><AnchorLink className="anchor-link text-lg font-semibold" offset="50" href="#project">Projects</AnchorLink></li>
+      <li><AnchorLink className="anchor-link text-lg font-semibold" offset="50" href="#contact">Contact</AnchorLink></li>
     </>
   );
 

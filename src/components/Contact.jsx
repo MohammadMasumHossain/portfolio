@@ -36,7 +36,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-sky-100 to-blue-200 px-6 py-16">
+    <div id='contact' className="bg-gradient-to-r from-sky-100 to-blue-200 px-6 py-16">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
         
         {/* Left: Contact Info */}
@@ -51,22 +51,22 @@ const Contact = () => {
 
           <div className="flex items-center gap-4 text-lg text-gray-700">
             <FaEnvelope className="text-primary text-2xl" />
-            <span>
-              Email: <a href="mailto:masum@example.com" className="link">masum@example.com</a>
-            </span>
+
+              <p href="masumhossainrana71@gmail.com" className=""> Email: masumhossainrana71@gmail.com</p>
+            
           </div>
 
           <div className="flex items-center gap-4 text-lg text-gray-700">
             <FaPhone className="text-primary text-2xl" />
             <span>
-              Phone: <a href="tel:+8801234567890" className="link">+880 1234 567890</a>
+               <p  className="">Phone: +880 01623742668</p>
             </span>
           </div>
 
           <div className="flex items-center gap-4 text-lg text-gray-700">
             <FaWhatsapp className="text-green-500 text-2xl" />
             <span>
-              WhatsApp: <a href="https://wa.me/8801234567890" target="_blank" rel="noreferrer" className="link">+880 1234 567890</a>
+              <p   className="">  WhatsApp:+880 01623742668</p>
             </span>
           </div>
         </motion.div>
