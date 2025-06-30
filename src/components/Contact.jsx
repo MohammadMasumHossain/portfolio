@@ -1,134 +1,102 @@
-import React, { useRef } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
 import { FaEnvelope, FaPhone, FaWhatsapp } from 'react-icons/fa';
-import emailjs from '@emailjs/browser';
 import Swal from 'sweetalert2';
 
 const Contact = () => {
-  const formRef = useRef();
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    formData.append("access_key", "d42c83f8-bb67-4d87-9a96-7ee6e0839b8e");
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
 
-    emailjs
-      .sendForm(
-        'service_6fc8n39', // Your EmailJS service ID
-        'template_u1zqswi', // Your EmailJS template ID
-        formRef.current,
-        'JQM_RiAVVLQJVyraG' // Your EmailJS public key
-      )
-      .then(() => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Message Sent!',
-          text: 'Your message has been successfully sent.',
-        });
-        e.target.reset();
-      })
-      .catch((error) => {
-        console.error('Email send error:', error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Failed to send your message. Please try again.',
-        });
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: json
+    }).then((res) => res.json());
+
+    if (res.success) {
+      Swal.fire({
+        title: "Success!",
+        text: "Message sent successfully!",
+        icon: "success"
       });
+      event.target.reset();
+    }
   };
 
   return (
-    <div id='contact' className="bg-gradient-to-r from-sky-100 to-blue-200 px-6 py-16">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-        
-        {/* Left: Contact Info */}
-        <motion.div
-          initial={{ x: -80, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: false }}
-          className="space-y-6 p-6 bg-white/70 backdrop-blur-md rounded-xl shadow-lg"
-        >
-          <h2 className="text-3xl font-bold text-primary">Contact Information</h2>
+    <section
+      id="contact"
+      className="py-16 px-4 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100"
+    >
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-4xl font-bold text-center text-primary mb-12">Contact Me</h2>
 
-          <div className="flex items-center gap-4 text-lg text-gray-700">
-            <FaEnvelope className="text-primary text-2xl" />
-
-              <p href="masumhossainrana71@gmail.com" className=""> Email: masumhossainrana71@gmail.com</p>
-            
+        <div className="grid md:grid-cols-2 gap-12 p-6 rounded-xl bg-white/70 backdrop-blur-lg shadow-2xl">
+          {/* Left Side: Contact Info - Vertically Centered */}
+          <div className="flex flex-col justify-center h-full space-y-6">
+            <div className="flex items-center gap-4">
+              <FaEnvelope className="text-2xl text-primary" />
+              <span className="text-lg font-medium text-gray-800">masumhossainrana71@gmail.com</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <FaPhone className="text-2xl text-primary" />
+              <span className="text-lg font-medium text-gray-800">+880 1623742668</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <FaWhatsapp className="text-2xl text-primary" />
+              <span className="text-lg font-medium text-gray-800">+880 1623742668</span>
+            </div>
           </div>
 
-          <div className="flex items-center gap-4 text-lg text-gray-700">
-            <FaPhone className="text-primary text-2xl" />
-            <span>
-               <p  className="">Phone: +880 01623742668</p>
-            </span>
-          </div>
-
-          <div className="flex items-center gap-4 text-lg text-gray-700">
-            <FaWhatsapp className="text-green-500 text-2xl" />
-            <span>
-              <p   className="">  WhatsApp:+880 01623742668</p>
-            </span>
-          </div>
-        </motion.div>
-
-        {/* Right: Contact Form */}
-        <motion.form
-          ref={formRef}
-          onSubmit={sendEmail}
-          initial={{ x: 80, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: false }}
-          className="space-y-4 bg-white/80 backdrop-blur-md p-6 rounded-xl shadow-lg"
-        >
-          <h3 className="text-2xl font-bold mb-4 text-primary">Send a Message</h3>
-
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            className="input input-bordered w-full"
-            required
-          />
-
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            className="input input-bordered w-full"
-            required
-          />
-
-          {/* Hidden fields required by your EmailJS template */}
-          <input
-            type="text"
-            name="reply_to"
-            value="masum@example.com"
-            readOnly
-            hidden
-          />
-          <input
-            type="text"
-            name="time"
-            value={new Date().toLocaleString()}
-            readOnly
-            hidden
-          />
-
-          <textarea
-            name="message"
-            rows="5"
-            placeholder="Your Message"
-            className="textarea textarea-bordered w-full"
-            required
-          ></textarea>
-
-          <button type="submit" className="btn btn-primary w-full">
-            Send Message
-          </button>
-        </motion.form>
+          {/* Right Side: Contact Form */}
+          <form onSubmit={onSubmit} className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Name</label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Your name"
+                required
+                className="mt-1 w-full px-4 py-2 border border-gray-300 bg-white bg-opacity-80 backdrop-blur-md rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Email</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="Your email"
+                required
+                className="mt-1 w-full px-4 py-2 border border-gray-300 bg-white bg-opacity-80 backdrop-blur-md rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Message</label>
+              <textarea
+                rows="4"
+                name="message"
+                placeholder="Your message"
+                required
+                className="mt-1 w-full px-4 py-2 border border-gray-300 bg-white bg-opacity-80 backdrop-blur-md rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              className="btn btn-primary px-6 py-2 text-white font-medium rounded-md hover:shadow-md hover:scale-105 transition-all"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

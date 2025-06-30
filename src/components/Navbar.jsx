@@ -14,7 +14,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 fixed top-0 left-0 w-full z-50 shadow-sm px-6 pt-2">
+    <div className="navbar bg-base-100 fixed top-0 left-0 w-full z-50  px-6 pt-2">
       <div className="navbar-start">
         <img src={logo} alt="Logo" className="h-12 w-auto p-1 m-1 rounded-md" />
       </div>

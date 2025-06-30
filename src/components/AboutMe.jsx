@@ -5,7 +5,7 @@ import animationData from '../assets/aboutme animation.json';
 
 const AboutMe = () => {
   return (
-    <div id='aboutme' className="bg-base-100 px-6">
+    <div id='aboutme' className="bg-base-100 px-6 -mt-24">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
         
         {/* Lottie Animation (slide from left) */}

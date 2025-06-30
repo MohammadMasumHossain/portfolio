@@ -19,7 +19,7 @@ const Projects = () => {
       stack: 'React, Firebase,react router,jwt, Tailwind, Node.js,mongodb, Express',
       description:
         'A modern full-stack MERN tour booking platform integrated with Firebase Authentication. It allows users to explore tour packages, view detailed itineraries, make bookings, and manage their travel experiences.',
-      liveLink: 'tour-package-4f41d.web.app/',
+      liveLink: 'https://tour-package-4f41d.web.app/',
       githubClient: 'https://github.com/MohammadMasumHossain/Tour-package-booking-management',
       githubServer: 'https://github.com/MohammadMasumHossain/Tour-package-booking-Management-serversite',
     },
@@ -33,7 +33,7 @@ const Projects = () => {
       stack: 'React, MongoDB, Express, Node.js,react router ,framer motion,jwt,firebase',
       description:
         'PlantPal is a user-friendly plant management web application designed to help houseplant enthusiasts log, organize, and track the care routines for their beloved indoor plants. With personalized plant dashboards, users can ensure timely care and monitor their plant’s health effortlessly.',
-      liveLink: 'plant-care-2aaea.web.app',
+      liveLink: 'https://plant-care-2aaea.web.app/',
       githubClient: 'https://github.com/MohammadMasumHossain/HousePLant-care-client',
       githubServer: 'https://github.com/MohammadMasumHossain/House-plant-care-server',
     },
